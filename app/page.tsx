@@ -1030,7 +1030,7 @@ export default function Page() {
 
         {/* VIEW 2: PORTFOLIO VIEW */}
         {currentView === "portfolio" && (
-          <div className="py-16 px-6 max-w-7xl mx-auto text-left">
+          <div className="pt-28 sm:pt-32 pb-16 px-6 max-w-7xl mx-auto text-left">
             <div className="mb-12">
               <span className="text-[10px] font-mono tracking-[0.3em] text-luxury-gold uppercase font-bold block mb-2">
                 Curated UK Landmarks
