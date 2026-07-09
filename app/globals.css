@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: auto;
+  font-size: 90%;
+}
+
+:root {
+  --font-nature: "Nature", "Arial", sans-serif;
+}
+
+@theme {
+  --font-sans: var(--font-nature);
+  --font-display: var(--font-nature);
+  --font-mono: var(--font-nature);
+  --color-luxury-sand: #f5f3ef;
+  --color-luxury-charcoal: #0a0b0d;
+  --color-luxury-gold: #c5a880;
+  --color-luxury-brass: #b89c72;
+}
+
+html,
+body,
+button,
+input,
+textarea,
+select,
+option,
+label,
+span,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+li,
+div,
+section,
+article,
+nav,
+header,
+footer,
+main,
+small,
+strong,
+em,
+code,
+pre {
+  font-family: var(--font-nature) !important;
+}
+
+i,
+em,
+.italic {
+  font-style: normal !important;
+}
+
+* {
+  font-family: inherit;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

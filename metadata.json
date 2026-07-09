@@ -1,0 +1,6 @@
+{
+  "name": "SPH Properties",
+  "description": "High-end UK luxury real estate agency featuring interactive virtual tours, real-time market insights, and seamless property filtering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
