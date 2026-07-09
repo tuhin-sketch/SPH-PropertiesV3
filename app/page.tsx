@@ -14,6 +14,7 @@ import {
   Sparkles,
   ArrowUpRight,
   ChevronRight,
+  ChevronDown,
   Search,
   Filter,
   X,
@@ -443,7 +444,10 @@ export default function Page() {
     <div id="sph-properties-root" className="min-h-screen flex flex-col font-sans overflow-x-hidden bg-[#f5f3ef]">
       
       {/* Top Header & Navigation Bar */}
-      <header id="sph-header" className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-4 pt-3 sm:pt-4 pointer-events-none">
+      <header
+        id="sph-header"
+        className={`${currentView === "home" || currentView === "portfolio" ? "fixed" : "sticky"} top-0 left-0 right-0 z-50 px-3 sm:px-4 pt-3 sm:pt-4 pointer-events-none`}
+      >
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 rounded-full border border-[#e5e2dd] bg-white/75 px-4 sm:px-5 py-2.5 shadow-[0_12px_28px_rgba(10,11,13,0.08)] backdrop-blur-xl ring-1 ring-white/70 pointer-events-auto">
           <div 
             onClick={() => navigateToView("home")} 
@@ -1057,45 +1061,54 @@ export default function Page() {
               {/* Category Filter (3 Cols) */}
               <div className="lg:col-span-3 flex items-center space-x-2">
                 <Filter className="w-4 h-4 text-luxury-gold shrink-0" />
-                <select
-                  value={filterType}
-                  onChange={(e) => setFilterType(e.target.value)}
-                  className="w-full bg-[#f5f3ef] text-xs font-bold py-2.5 px-3 border border-[#e5e2dd] text-luxury-charcoal focus:outline-none"
-                >
-                  <option value="ALL">ALL ARCHITECTURAL TYPES</option>
-                  <option value="COASTAL">COASTAL BRUTALIST</option>
-                  <option value="HERITAGE">HERITAGE MANOR</option>
-                  <option value="BRUTALIST">URBAN BRUTALIST</option>
-                  <option value="MOUNTAIN">MOUNTAIN LODGE</option>
-                </select>
+                <div className="relative w-full">
+                  <select
+                    value={filterType}
+                    onChange={(e) => setFilterType(e.target.value)}
+                    className="w-full appearance-none bg-[#f5f3ef] text-xs font-bold py-2.5 pl-3 pr-10 border border-[#e5e2dd] text-luxury-charcoal focus:outline-none"
+                  >
+                    <option value="ALL">ALL ARCHITECTURAL TYPES</option>
+                    <option value="COASTAL">COASTAL BRUTALIST</option>
+                    <option value="HERITAGE">HERITAGE MANOR</option>
+                    <option value="BRUTALIST">URBAN BRUTALIST</option>
+                    <option value="MOUNTAIN">MOUNTAIN LODGE</option>
+                  </select>
+                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-luxury-charcoal/40" />
+                </div>
               </div>
 
               {/* Budget Sorter (2.5 Cols) */}
               <div className="lg:col-span-2.5">
-                <select
-                  value={filterBudget}
-                  onChange={(e) => setFilterBudget(e.target.value)}
-                  className="w-full bg-[#f5f3ef] text-xs font-bold py-2.5 px-3 border border-[#e5e2dd] text-luxury-charcoal focus:outline-none"
-                >
-                  <option value="ANY">ANY BUDGET</option>
-                  <option value="UNDER_5M">UNDER £5,000,000</option>
-                  <option value="ABOVE_5M">£5,000,000 +</option>
-                </select>
+                <div className="relative">
+                  <select
+                    value={filterBudget}
+                    onChange={(e) => setFilterBudget(e.target.value)}
+                    className="w-full appearance-none bg-[#f5f3ef] text-xs font-bold py-2.5 pl-3 pr-10 border border-[#e5e2dd] text-luxury-charcoal focus:outline-none"
+                  >
+                    <option value="ANY">ANY BUDGET</option>
+                    <option value="UNDER_5M">UNDER £5,000,000</option>
+                    <option value="ABOVE_5M">£5,000,000 +</option>
+                  </select>
+                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-luxury-charcoal/40" />
+                </div>
               </div>
 
               {/* Region Sorter (2.5 Cols) */}
               <div className="lg:col-span-2.5">
-                <select
-                  value={filterLocation}
-                  onChange={(e) => setFilterLocation(e.target.value)}
-                  className="w-full bg-[#f5f3ef] text-xs font-bold py-2.5 px-3 border border-[#e5e2dd] text-luxury-charcoal focus:outline-none"
-                >
-                  <option value="ANY">ANY REGION</option>
-                  <option value="Cornwall">CORNWALL</option>
-                  <option value="Cotswolds">COTSWOLDS</option>
-                  <option value="London">LONDON CENTRAL</option>
-                  <option value="Highlands">SCOTTISH HIGHLANDS</option>
-                </select>
+                <div className="relative">
+                  <select
+                    value={filterLocation}
+                    onChange={(e) => setFilterLocation(e.target.value)}
+                    className="w-full appearance-none bg-[#f5f3ef] text-xs font-bold py-2.5 pl-3 pr-10 border border-[#e5e2dd] text-luxury-charcoal focus:outline-none"
+                  >
+                    <option value="ANY">ANY REGION</option>
+                    <option value="Cornwall">CORNWALL</option>
+                    <option value="Cotswolds">COTSWOLDS</option>
+                    <option value="London">LONDON CENTRAL</option>
+                    <option value="Highlands">SCOTTISH HIGHLANDS</option>
+                  </select>
+                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-luxury-charcoal/40" />
+                </div>
               </div>
             </div>
 
@@ -1910,15 +1923,18 @@ export default function Page() {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="text-[9px] font-mono text-luxury-charcoal/50 uppercase block mb-1">Select Property</label>
-                      <select
-                        value={selectedPropertyId}
-                        onChange={(e) => setSelectedPropertyId(e.target.value)}
-                        className="w-full text-xs px-3 py-2 border border-[#e5e2dd] bg-luxury-sand text-luxury-charcoal font-semibold focus:outline-none focus:border-luxury-gold"
-                      >
-                        {PROPERTIES.map((p) => (
-                          <option key={p.id} value={p.id}>{p.name}</option>
-                        ))}
-                      </select>
+                      <div className="relative">
+                        <select
+                          value={selectedPropertyId}
+                          onChange={(e) => setSelectedPropertyId(e.target.value)}
+                          className="w-full appearance-none text-xs px-3 py-2 pr-10 border border-[#e5e2dd] bg-luxury-sand text-luxury-charcoal font-semibold focus:outline-none focus:border-luxury-gold"
+                        >
+                          {PROPERTIES.map((p) => (
+                            <option key={p.id} value={p.id}>{p.name}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-luxury-charcoal/40" />
+                      </div>
                     </div>
                     <div>
                       <label className="text-[9px] font-mono text-luxury-charcoal/50 uppercase block mb-1">Full Name</label>
